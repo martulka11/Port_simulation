@@ -84,7 +84,7 @@ public class Port extends Thread {
             LocalDate nowaData = LocalDate.now();
             System.out.println(nowaData);
             DateTimeFormatter nowyFormat = DateTimeFormatter.ofPattern("yyyy MM dd");
-            while (true) {
+            while (!Thread.currentThread().isInterrupted()) {
                 for (int k = 0; k < listaMagazynow.size(); k++) {
                     for (int i = 0; i < listaMagazynow.get(k).getListaKontenerow().size(); i++) {
                         if (listaMagazynow.get(k).getListaKontenerow().get(i) instanceof KontenerNaMaterialyWybuchowe) {
@@ -207,7 +207,7 @@ public class Port extends Thread {
 
         Scanner sc = new Scanner(System.in);
 
-        while (true) {
+        while (!Thread.currentThread().isInterrupted()) {
             String sentence = sc.nextLine().toLowerCase();
 
             //METODA
@@ -303,6 +303,7 @@ public class Port extends Thread {
                                     KontenerPodstawowy naszKontener = listaMagazynow.get(k).getListaKontenerow().get(j);
                                     podanyMagazyn.zaladujKontener(listaMagazynow.get(k).getListaKontenerow().get(j));
                                     podanyMagazyn.rozladujKontenerMagazyn(naszKontener);
+                                    System.out.println("Zaladowano kontener");
                                 }
                             }
                         }
